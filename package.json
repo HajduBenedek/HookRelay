@@ -1,0 +1,28 @@
+{
+  "name": "hookrelay",
+  "private": true,
+  "description": "Self-hostable webhook gateway: durable ingest, signed delivery, retries, dead-letter queue and replay.",
+  "license": "MIT",
+  "author": "Hajdu Benedek",
+  "type": "module",
+  "packageManager": "pnpm@10.15.1",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "infra:up": "docker compose up -d postgres redis",
+    "infra:down": "docker compose down",
+    "db:migrate": "pnpm --filter @hookrelay/api db:migrate",
+    "db:seed": "pnpm --filter @hookrelay/api db:seed",
+    "dev": "concurrently -k -n api,worker,web,mock -c blue,magenta,green,yellow \"pnpm --filter @hookrelay/api dev:api\" \"pnpm --filter @hookrelay/api dev:worker\" \"pnpm --filter @hookrelay/dashboard dev\" \"pnpm --filter @hookrelay/mock-receiver dev\"",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "pnpm --filter @hookrelay/api test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "concurrently": "^10.0.6"
+  }
+}

@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+
+onlyBuiltDependencies:
+  - "@swc/core"
+  - esbuild
+  - cpu-features
+  - ssh2
+  - protobufjs

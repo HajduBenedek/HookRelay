@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/*
+ * Framed-sheet style: one tinted L-frame (sidebar + top bar), the work on a white sheet inset
+ * 8px from the right and bottom edges. Colour budget under 3%: teal goes on delivered data,
+ * amber and red only on retry and failure status.
+ *
+ * Grid arithmetic at 1440px: sheet = 1440 - 228 (sidebar) - 8 (inset) = 1204px;
+ * content = 1204 - 2 x 24 (padding) = 1156px = 3 x 369.33 + 2 x 24 gap.
+ */
+:root {
+  --ground: #f9fbfc;
+  --surface: #ffffff;
+  --raised: #f4f6f8;
+  --active: #ebedee;
+  --border: #e8eaec;
+  --rule: #f0f1f2;
+  --control: #cdced1;
+  --text: #131416;
+  --muted: #5d5f60;
+  --accent: #1b6c80;
+  --primary: #1d1f20;
+  --on-primary: #ffffff;
+  --positive: #1e7b4f;
+  --negative: #c4242a;
+  --warning: #92400e;
+  --chart-1: #1b6c80;
+  --chart-3: #a86f0c;
+  --grid: #e5e5e5;
+  --pill-positive-bg: #dcfae5;
+  --pill-positive-ink: #04250e;
+  --pill-negative-bg: #ffedea;
+  --pill-negative-ink: #831c1e;
+  --pill-warning-bg: #fffbeb;
+  --pill-warning-ink: #92400e;
+  --pill-neutral-bg: #ebedee;
+  --pill-neutral-ink: #353736;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --ground: #0b0c0d;
+  --surface: #131416;
+  --raised: #1b1c1f;
+  --active: #24262a;
+  --border: #26282b;
+  --rule: #1e2023;
+  --control: #44474b;
+  --text: #f3f4f5;
+  --muted: #b0b4b8;
+  --accent: #4fb2c6;
+  --primary: #f3f4f5;
+  --on-primary: #111214;
+  --positive: #3fc07a;
+  --negative: #f06b6b;
+  --warning: #e0a24a;
+  --chart-1: #4fb2c6;
+  --chart-3: #d39a32;
+  --grid: #2b2d30;
+  --pill-positive-bg: #172a1d;
+  --pill-positive-ink: #5fd393;
+  --pill-negative-bg: #2e1a1c;
+  --pill-negative-ink: #f58a8a;
+  --pill-warning-bg: #2c2214;
+  --pill-warning-ink: #e9b25c;
+  --pill-neutral-bg: #24262a;
+  --pill-neutral-ink: #c9ccd0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-active: var(--active);
+  --color-border: var(--border);
+  --color-rule: var(--rule);
+  --color-control: var(--control);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-warning: var(--warning);
+  --font-sans: "IBM Plex Sans", Inter, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-sheet: 16px;
+}
+
+html,
+body {
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
