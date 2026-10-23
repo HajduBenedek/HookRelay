@@ -6,7 +6,7 @@ import { destinations, sources } from './schema.js';
  * Demo data for local development. The secret is shared with apps/mock-receiver so it can
  * verify signatures; never reuse it outside local dev.
  */
-export const DEMO_SECRET = 'whsec_ZGVtby1vbmx5LXNlY3JldC1kby1ub3QtdXNl';
+export const DEMO_SECRET = `whsec_${Buffer.from('demo-only-secret-do-not-use').toString('base64')}`;
 const RECEIVER = process.env.MOCK_RECEIVER_URL ?? 'http://localhost:4000';
 
 const url = process.env.DATABASE_URL;

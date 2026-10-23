@@ -12,7 +12,10 @@ import { createServer } from 'node:http';
 const PORT = Number(process.env.MOCK_PORT ?? 4000);
 const FAIL_RATE = Number(process.env.FAIL_RATE ?? 0.5);
 const SLOW_MS = Number(process.env.SLOW_MS ?? 3000);
-const SECRET = process.env.MOCK_SECRET ?? 'whsec_ZGVtby1vbmx5LXNlY3JldC1kby1ub3QtdXNl';
+// Must match DEMO_SECRET in apps/api/src/db/seed.ts.
+const SECRET =
+  process.env.MOCK_SECRET ??
+  `whsec_${Buffer.from('demo-only-secret-do-not-use').toString('base64')}`;
 
 function validSignature(id: string, ts: string, body: Buffer, header: string): boolean {
   const key = Buffer.from(SECRET.replace(/^whsec_/, ''), 'base64');

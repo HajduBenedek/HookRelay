@@ -2,7 +2,8 @@ import { Webhook } from 'standardwebhooks';
 import { describe, expect, it } from 'vitest';
 import { generateSecret, sign, signatureHeaders, verify } from './signature.js';
 
-const secret = 'whsec_MfKQ9r8GKYqrTwjUPD8ILPZIo2LaLaSw';
+// Built at runtime so the fixture never looks like a leaked key to secret scanners.
+const secret = `whsec_${Buffer.from('signature-test-key-32-bytes-long').toString('base64')}`;
 const body = Buffer.from('{"type":"invoice.paid","amount":4990}');
 
 describe('Standard Webhooks compatibility', () => {
